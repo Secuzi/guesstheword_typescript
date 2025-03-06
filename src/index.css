@@ -1,0 +1,106 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Hanken Grotesk", sans-serif;
+}
+
+body {
+  background-color: #282726;
+  color: white;
+}
+
+.container {
+  max-width: 594px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  font-weight: 600;
+  padding-top: 4rem;
+}
+
+.header > h1 {
+  font-size: 36px;
+  margin: 0 0 8px 0;
+}
+
+.header > p {
+  font-size: 16px;
+  color: #8e8e8e;
+  max-width: 352px;
+  margin: 0 auto;
+}
+/* TODO: Change game status via js */
+.status {
+  margin-top: 24px;
+  height: 60px;
+  background-color: #282726;
+}
+
+.languages-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  font-size: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.language-element {
+  padding: 7px;
+  font-weight: bold;
+  border-radius: 6px;
+}
+
+.currentword-container {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-block: 64px;
+}
+
+.currentword-element {
+  background-color: #323232;
+  font-weight: bold;
+  border-bottom: 1px solid #f9f4da;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+
+section.keyboard-container {
+  margin-inline: auto;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 720px;
+  justify-content: center;
+  gap: 12px;
+}
+
+button.letter-btn {
+  width: 60px;
+  height: 60px;
+  font-size: 28px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #fcba29;
+  font-family: "Hanken Grotesk", "sans-serif";
+  border: 2px solid #f9f4da;
+}
+
+button.letter-btn.input-correct {
+  background-color: #10a95b;
+}
+button.letter-btn.input-incorrect {
+  background-color: #ec5d49;
+}
