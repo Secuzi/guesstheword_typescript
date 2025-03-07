@@ -30,7 +30,11 @@ function App() {
     setGuessedCharacters((prevCharacters) => [...prevCharacters, letter]);
   }
 
-  // TODO: Add the status info if user wins or loses
+  // TODO:
+  //1. Add button to restart game
+  //2. Random word
+  //3. Implement database 'cause why not gotta get practice
+  //4. A11y
 
   const alphabetElements = alphabet.split("").map((letter) => {
     const guessedCharacter = guessedCharacters.includes(letter);
