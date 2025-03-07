@@ -108,3 +108,7 @@ button.letter-btn.input-correct {
 button.letter-btn.input-incorrect {
   background-color: #ec5d49;
 }
+
+button.letter-btn:disabled {
+  opacity: 50%;
+}

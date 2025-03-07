@@ -3,7 +3,7 @@ import { useState } from "react";
 import clsx from "clsx";
 function App() {
   // States
-  const [currentWord, setCurrentWord] = useState("javascript");
+  const [currentWord, setCurrentWord] = useState("regine");
   const [guessedCharacters, setGuessedCharacters] = useState<string[]>([]);
   // Derived States
   const currentWordArr = currentWord.split("");
@@ -11,7 +11,13 @@ function App() {
     (character) => !currentWordArr.includes(character)
   ).length;
 
-  console.log("Incorrect guesses: ", incorrectGuesses);
+  const isGameWon = currentWordArr.every((char) =>
+    guessedCharacters.includes(char)
+  );
+
+  const isGameLost = incorrectGuesses === languages.length - 1;
+
+  const isGameOver = isGameWon || isGameLost;
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
   function addGuess(letter: string) {
     if (guessedCharacters.includes(letter)) {
@@ -21,8 +27,7 @@ function App() {
     setGuessedCharacters((prevCharacters) => [...prevCharacters, letter]);
   }
 
-  // TODO: Disable buttons when user goes is equal to language.length
-  // - 1, add a isGameOver, isGameWon, and isGameLost derived state.
+  // TODO: Add the status info if user wins or loses
 
   const alphabetElements = alphabet.split("").map((letter) => {
     const guessedCharacter = guessedCharacters.includes(letter);
@@ -32,6 +37,7 @@ function App() {
     return (
       <button
         key={letter}
+        disabled={isGameOver}
         className={clsx("letter-btn", {
           "input-correct": isGuessCorrect,
           "input-incorrect": isGuessIncorrect,
