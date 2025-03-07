@@ -1,4 +1,3 @@
-import { LanguageType } from "../Types";
 export function getFarewellText(language: string) {
   const options = [
     `Farewell, ${language}`,
