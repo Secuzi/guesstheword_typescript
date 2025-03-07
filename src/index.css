@@ -58,6 +58,10 @@ body {
   border-radius: 6px;
 }
 
+span.language-element.killed {
+  opacity: 5%;
+}
+
 .currentword-container {
   display: flex;
   gap: 6px;

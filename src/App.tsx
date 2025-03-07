@@ -3,12 +3,16 @@ import { useState } from "react";
 import clsx from "clsx";
 function App() {
   // States
-  const [currentWord, setCurrentWord] = useState("regineeeeeexd");
+  const [currentWord, setCurrentWord] = useState("javascript");
   const [guessedCharacters, setGuessedCharacters] = useState<string[]>([]);
   // Derived States
   const currentWordArr = currentWord.split("");
+  const incorrectGuesses = guessedCharacters.filter(
+    (character) => !currentWordArr.includes(character)
+  ).length;
+
+  console.log("Incorrect guesses: ", incorrectGuesses);
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
-  console.log(guessedCharacters);
   function addGuess(letter: string) {
     if (guessedCharacters.includes(letter)) {
       return;
@@ -17,10 +21,8 @@ function App() {
     setGuessedCharacters((prevCharacters) => [...prevCharacters, letter]);
   }
 
-  // TODO: Implement dynamic adding of letters for the output
-
-  //1. How do I make sure that the box is still there when there are no guesses but when I click on a button
-  //   and it is correct the letter will appear to its corresponding boxes
+  // TODO: Disable buttons when user goes is equal to language.length
+  // - 1, add a isGameOver, isGameWon, and isGameLost derived state.
 
   const alphabetElements = alphabet.split("").map((letter) => {
     const guessedCharacter = guessedCharacters.includes(letter);
@@ -41,18 +43,26 @@ function App() {
     );
   });
 
-  const currentWordElements = currentWordArr.map((character) => (
-    <span className="currentword-element">{character.toUpperCase()}</span>
+  const currentWordElements = currentWordArr.map((character, index) => (
+    <span className="currentword-element" key={index}>
+      {guessedCharacters.includes(character) ? character.toUpperCase() : ""}
+    </span>
   ));
 
   const languagesElements = languages.map((language, index) => {
+    const isLanguageDead = index < incorrectGuesses;
+
+    const className = clsx("language-element", {
+      killed: isLanguageDead && index < languages.length - 1,
+    });
+
     const styles = {
       backgroundColor: language.backgroundColor,
       color: language.color,
     };
 
     return (
-      <span key={index} style={styles} className="language-element">
+      <span key={index} style={styles} className={className}>
         {language.name}
       </span>
     );
