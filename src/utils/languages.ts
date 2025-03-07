@@ -1,9 +1,4 @@
-type LanguageType = {
-  name: string;
-  color: string;
-  backgroundColor: string;
-};
-
+import { type LanguageType } from "../Types";
 export const languages: LanguageType[] = [
   {
     name: "HTML",

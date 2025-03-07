@@ -36,10 +36,42 @@ body {
   margin: 0 auto;
 }
 /* TODO: Change game status via js */
-.status {
-  margin-top: 24px;
-  height: 60px;
+section.status {
+  margin-block: 24px;
   background-color: #282726;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  padding-block: 12px;
+}
+
+section.status.win {
+  background-color: #10a95b;
+}
+section.status.lose {
+  background-color: #ba2a2a;
+  border: 1px solid black;
+}
+section.status.mistake {
+  background-color: #7a5ea7;
+  border: 1px solid #323232;
+  border-style: dashed;
+}
+
+section.status > * {
+  margin: 0;
+  font-weight: 600;
+}
+
+section.status > h2 {
+  font-size: 2rem;
+}
+
+section.status > p {
+  font-size: 1.3rem;
 }
 
 .languages-container {

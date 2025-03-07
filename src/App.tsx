@@ -1,9 +1,10 @@
 import { languages } from "./utils/languages";
 import { useState } from "react";
 import clsx from "clsx";
+import StatusInfo from "./components/StatusInfo";
 function App() {
   // States
-  const [currentWord, setCurrentWord] = useState("regine");
+  const [currentWord, setCurrentWord] = useState("re");
   const [guessedCharacters, setGuessedCharacters] = useState<string[]>([]);
   // Derived States
   const currentWordArr = currentWord.split("");
@@ -16,7 +17,9 @@ function App() {
   );
 
   const isGameLost = incorrectGuesses === languages.length - 1;
-
+  const isRecentGuessMistake =
+    guessedCharacters.length > 0 &&
+    !currentWordArr.includes(guessedCharacters[guessedCharacters.length - 1]);
   const isGameOver = isGameWon || isGameLost;
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
   function addGuess(letter: string) {
@@ -74,6 +77,16 @@ function App() {
     );
   });
 
+  // Creating a function that handles the attachment of classes
+
+  //If the latest element of the guessedCharacters is not included
+  //in the currentWord then change the class to mistake
+  const gameStatus = clsx("status container", {
+    win: isGameWon,
+    lose: isGameLost,
+    mistake: isRecentGuessMistake && !isGameOver,
+  });
+
   return (
     <>
       <main>
@@ -86,7 +99,14 @@ function App() {
         </section>
 
         {/* Game Status */}
-        <section className="status container"></section>
+        <section className={gameStatus}>
+          <StatusInfo
+            isGameLost={isGameLost}
+            isGameWon={isGameWon}
+            isRecentGuessMistake={isRecentGuessMistake && !isGameOver}
+            language={languages[incorrectGuesses - 1]}
+          />
+        </section>
 
         {/* Languages */}
 
