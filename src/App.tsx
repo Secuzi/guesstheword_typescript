@@ -2,6 +2,7 @@ import { languages } from "./utils/languages";
 import { useState } from "react";
 import clsx from "clsx";
 import StatusInfo from "./components/StatusInfo";
+import { getRandomWord } from "./utils/words";
 function App() {
   // States
   const [currentWord, setCurrentWord] = useState("re");
@@ -31,8 +32,6 @@ function App() {
   }
 
   // TODO:
-  //1. Add button to restart game
-  //2. Random word
   //3. Implement database 'cause why not gotta get practice
   //4. A11y
   //5. Add the completed word after losing but change the color
@@ -82,16 +81,16 @@ function App() {
     );
   });
 
-  // Creating a function that handles the attachment of classes
-
-  //If the latest element of the guessedCharacters is not included
-  //in the currentWord then change the class to mistake
   const gameStatus = clsx("status container", {
     win: isGameWon,
     lose: isGameLost,
     mistake: isRecentGuessMistake && !isGameOver,
   });
 
+  function restartGame() {
+    setGuessedCharacters([]);
+    setCurrentWord(getRandomWord());
+  }
   return (
     <>
       <main>
@@ -126,7 +125,11 @@ function App() {
         {/* Keyboard */}
         <section className="keyboard-container">{alphabetElements}</section>
 
-        {<button className="restart-btn">New Game</button>}
+        {isGameOver && (
+          <button className="restart-btn" onClick={restartGame}>
+            New Game
+          </button>
+        )}
       </main>
     </>
   );
