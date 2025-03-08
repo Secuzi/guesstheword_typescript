@@ -56,11 +56,24 @@ function App() {
     );
   });
 
-  const currentWordElements = currentWordArr.map((character, index) => (
-    <span className="currentword-element" key={index}>
-      {guessedCharacters.includes(character) ? character.toUpperCase() : ""}
-    </span>
-  ));
+  const currentWordElements = currentWordArr.map((character, index) => {
+    const isCharacterCorrect = guessedCharacters.includes(character);
+
+    return (
+      <span
+        className={clsx("currentword-element", {
+          "missing-character": isGameLost && !isCharacterCorrect,
+        })}
+        key={index}
+      >
+        {isCharacterCorrect
+          ? character.toUpperCase()
+          : isGameOver
+          ? character.toUpperCase()
+          : ""}
+      </span>
+    );
+  });
 
   const languagesElements = languages.map((language, index) => {
     const isLanguageDead = index < incorrectGuesses;

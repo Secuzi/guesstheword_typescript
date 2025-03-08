@@ -113,6 +113,10 @@ span.language-element.killed {
   font-size: 32px;
 }
 
+span.currentword-element.missing-character {
+  color: #ec5d49;
+}
+
 section.keyboard-container {
   margin-inline: auto;
   display: flex;
