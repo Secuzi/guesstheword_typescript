@@ -35,6 +35,7 @@ function App() {
   //2. Random word
   //3. Implement database 'cause why not gotta get practice
   //4. A11y
+  //5. Add the completed word after losing but change the color
 
   const alphabetElements = alphabet.split("").map((letter) => {
     const guessedCharacter = guessedCharacters.includes(letter);
@@ -124,6 +125,8 @@ function App() {
         </section>
         {/* Keyboard */}
         <section className="keyboard-container">{alphabetElements}</section>
+
+        {<button className="restart-btn">New Game</button>}
       </main>
     </>
   );
