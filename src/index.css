@@ -35,7 +35,6 @@ body {
   max-width: 352px;
   margin: 0 auto;
 }
-/* TODO: Change game status via js */
 section.status {
   margin-block: 24px;
   background-color: #282726;
