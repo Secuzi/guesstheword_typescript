@@ -21,7 +21,7 @@ export const languages: LanguageType[] = [
     backgroundColor: "#2ED3E9",
   },
   {
-    name: "Typescript",
+    name: "TypeScript",
     color: "#F9F4DA",
     backgroundColor: "#298EC6",
   },

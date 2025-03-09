@@ -3,9 +3,10 @@ import { useState } from "react";
 import clsx from "clsx";
 import StatusInfo from "./components/StatusInfo";
 import { getRandomWord } from "./utils/words";
+import ReactConfetti from "react-confetti";
 function App() {
   // States
-  const [currentWord, setCurrentWord] = useState("re");
+  const [currentWord, setCurrentWord] = useState(() => getRandomWord());
   const [guessedCharacters, setGuessedCharacters] = useState<string[]>([]);
   // Derived States
   const currentWordArr = currentWord.split("");
@@ -30,11 +31,6 @@ function App() {
 
     setGuessedCharacters((prevCharacters) => [...prevCharacters, letter]);
   }
-
-  // TODO:
-  //3. Implement database 'cause why not gotta get practice
-  //4. A11y
-  //5. Add the completed word after losing but change the color
 
   const alphabetElements = alphabet.split("").map((letter) => {
     const guessedCharacter = guessedCharacters.includes(letter);
@@ -107,6 +103,7 @@ function App() {
   return (
     <>
       <main>
+        {isGameWon && <ReactConfetti recycle={false} />}
         <section className="header container">
           <h1>Assembly: Endgame</h1>
           <p>
